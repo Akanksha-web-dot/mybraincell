@@ -1,319 +1,431 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Happy Birthday</title>
+<title>Birthday Quest</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
-  <style>
+<style>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      scroll-behavior:smooth;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
 
-    body{
-      font-family:'Poppins',sans-serif;
-      background:#0a0a0f;
-      color:white;
-      overflow-x:hidden;
-      background-image:
-      radial-gradient(circle at 20% 20%, rgba(0,255,255,0.15), transparent 25%),
-      radial-gradient(circle at 80% 30%, rgba(255,0,255,0.15), transparent 25%),
-      radial-gradient(circle at 50% 80%, rgba(0,150,255,0.15), transparent 25%);
-    }
+body{
+font-family:'Poppins',sans-serif;
+background:#09090f;
+overflow:hidden;
+color:white;
+}
 
-    section{
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      text-align:center;
-      padding:50px 20px;
-      position:relative;
-    }
+.page{
+width:100%;
+height:100vh;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+position:absolute;
+top:0;
+left:0;
+background:
+radial-gradient(circle at top left,#00e5ff22,transparent 30%),
+radial-gradient(circle at bottom right,#ff00ff22,transparent 30%),
+#09090f;
+}
 
-    .hero h1{
-      font-size:4rem;
-      font-family:'Press Start 2P',cursive;
-      color:#00e5ff;
-      text-shadow:0 0 20px #00e5ff;
-      margin-bottom:30px;
-      animation:glow 2s infinite alternate;
-    }
+.active{
+display:flex;
+}
 
-    @keyframes glow{
-      from{
-        text-shadow:0 0 10px #00e5ff;
-      }
-      to{
-        text-shadow:0 0 30px #ff00ff;
-      }
-    }
+h1{
+font-family:'Press Start 2P',cursive;
+font-size:2.5rem;
+line-height:1.5;
+color:#00e5ff;
+text-shadow:0 0 20px #00e5ff;
+margin-bottom:30px;
+}
 
-    .typing{
-      color:#ff9dfd;
-      margin-bottom:30px;
-      font-size:1.2rem;
-    }
+p{
+max-width:700px;
+line-height:2;
+font-size:1.1rem;
+}
 
-    .btn{
-      padding:15px 35px;
-      border:none;
-      border-radius:50px;
-      background:linear-gradient(45deg,#00e5ff,#ff00ff);
-      color:white;
-      font-weight:700;
-      cursor:pointer;
-      transition:0.3s;
-      box-shadow:0 0 20px rgba(255,255,255,0.2);
-      text-decoration:none;
-    }
+.btn{
+padding:15px 30px;
+margin:15px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+font-weight:700;
+font-size:1rem;
+transition:0.3s;
+background:linear-gradient(45deg,#00e5ff,#ff00ff);
+color:white;
+box-shadow:0 0 20px #00e5ff55;
+}
 
-    .btn:hover{
-      transform:scale(1.08);
-      box-shadow:0 0 30px #00e5ff;
-    }
+.btn:hover{
+transform:scale(1.08);
+}
 
-    .title{
-      font-size:3rem;
-      margin-bottom:50px;
-      color:#00e5ff;
-      text-shadow:0 0 15px #00e5ff;
-    }
+input{
+padding:15px;
+border:none;
+border-radius:15px;
+width:250px;
+margin-top:20px;
+font-size:1rem;
+text-align:center;
+}
 
-    .gallery{
-      width:100%;
-      max-width:1200px;
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+width:100%;
+max-width:1100px;
+margin-top:40px;
+}
 
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:30px;
-    }
+.card{
+background:rgba(255,255,255,0.07);
+border-radius:25px;
+overflow:hidden;
+backdrop-filter:blur(10px);
+transition:0.4s;
+}
 
-    .card{
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.1);
-      backdrop-filter:blur(10px);
-      border-radius:25px;
-      overflow:hidden;
-      transition:0.4s;
-      box-shadow:0 0 20px rgba(0,255,255,0.1);
-    }
+.card:hover{
+transform:translateY(-10px);
+}
 
-    .card:hover{
-      transform:translateY(-10px) scale(1.03);
-      box-shadow:0 0 25px rgba(255,0,255,0.5);
-    }
+.card img{
+width:100%;
+height:300px;
+object-fit:cover;
+}
 
-    .card img{
-      width:100%;
-      height:300px;
-      object-fit:cover;
-    }
+.card p{
+padding:20px;
+}
 
-    .card p{
-      padding:20px;
-      font-size:1rem;
-      color:#fff;
-    }
+video{
+width:90%;
+max-width:800px;
+border-radius:25px;
+margin-top:20px;
+box-shadow:0 0 30px #00e5ff55;
+}
 
-    .letter{
-      max-width:850px;
-      background:rgba(255,255,255,0.07);
-      padding:50px;
-      border-radius:30px;
-      backdrop-filter:blur(15px);
-      border:1px solid rgba(255,255,255,0.1);
-      line-height:2;
-      box-shadow:0 0 30px rgba(0,255,255,0.1);
-    }
+audio{
+margin-top:30px;
+width:300px;
+}
 
-    .letter h2{
-      margin-bottom:20px;
-      color:#ff9dfd;
-      font-size:2rem;
-    }
+.letter{
+background:rgba(255,255,255,0.08);
+padding:40px;
+border-radius:30px;
+max-width:850px;
+line-height:2;
+backdrop-filter:blur(10px);
+}
 
-    .final h1{
-      font-size:4rem;
-      color:#00e5ff;
-      margin-bottom:30px;
-      text-shadow:0 0 20px #00e5ff;
-    }
+.final{
+font-size:4rem;
+animation:glow 2s infinite alternate;
+}
 
-    .floating{
-      position:absolute;
-      width:10px;
-      height:10px;
-      background:#00e5ff;
-      border-radius:50%;
-      animation:float 8s linear infinite;
-      opacity:0.5;
-    }
+@keyframes glow{
+from{
+text-shadow:0 0 10px #00e5ff;
+}
+to{
+text-shadow:0 0 30px #ff00ff;
+}
+}
 
-    @keyframes float{
-      0%{
-        transform:translateY(100vh) scale(0);
-      }
-      100%{
-        transform:translateY(-100vh) scale(1);
-      }
-    }
+.floating{
+position:absolute;
+width:10px;
+height:10px;
+background:#00e5ff;
+border-radius:50%;
+opacity:0.5;
+animation:float 8s linear infinite;
+}
 
-    @media(max-width:768px){
+@keyframes float{
+0%{
+transform:translateY(100vh);
+}
+100%{
+transform:translateY(-100vh);
+}
+}
 
-      .hero h1{
-        font-size:2rem;
-      }
+@media(max-width:768px){
 
-      .title{
-        font-size:2rem;
-      }
+h1{
+font-size:1.4rem;
+}
 
-      .final h1{
-        font-size:2.5rem;
-      }
+.final{
+font-size:2.5rem;
+}
 
-    }
+}
 
-  </style>
+</style>
 </head>
 
 <body>
 
-  <section class="hero">
+<!-- HOME -->
 
-    <h1>LEVEL UP 🎮</h1>
+<section class="page active" id="home">
 
-    <div class="typing">
-      <span id="typed"></span>
-    </div>
+<h1>WELCOME PLAYER ONE 🎮</h1>
 
-    <a href="#memories" class="btn">
-      Start Mission ✨
-    </a>
+<p>
+A special birthday quest has been prepared for you ✨
+</p>
 
-  </section>
+<button class="btn" onclick="nextPage('password')">
+START GAME
+</button>
 
-  <section id="memories">
+</section>
 
-    <h2 class="title">
-      CORE MEMORIES 📸
-    </h2>
+<!-- PASSWORD -->
 
-    <div class="gallery">
+<section class="page" id="password">
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop">
-        <p>proof we survived together 💀</p>
-      </div>
+<h1>ENTER SECRET CODE 🔐</h1>
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1000&auto=format&fit=crop">
-        <p>elite chaos duo ✨</p>
-      </div>
+<p>Hint: your nickname / inside joke</p>
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1000&auto=format&fit=crop">
-        <p>too many memories. zero braincells 🎀</p>
-      </div>
+<input type="password" id="pass">
 
-    </div>
+<button class="btn" onclick="checkPassword()">
+UNLOCK
+</button>
 
-  </section>
+</section>
 
-  <section>
+<!-- YES OR NO -->
 
-    <div class="letter">
+<section class="page" id="choice">
 
-      <h2>Message For You 💌</h2>
+<h1>ARE YOU READY FOR<br>EMOTIONAL DAMAGE? 💀</h1>
 
-      <p>
+<div>
 
-        Happy Birthday to the person who somehow became one of my favorite humans ever.<br><br>
+<button class="btn" onclick="nextPage('videoPage')">
+YES
+</button>
 
-        Thank you for every laugh,
-        every dumb conversation,
-        every random memory,
-        and every moment that made life less boring.<br><br>
+<button class="btn" onclick="ragebait()">
+NO
+</button>
 
-        You deserve all the happiness,
-        success,
-        peace,
-        and legendary gamer wins ✨🎮
+</div>
 
-      </p>
+</section>
 
-    </div>
+<!-- VIDEO -->
 
-  </section>
+<section class="page" id="videoPage">
 
-  <section class="final">
+<h1>MAIN CHARACTER EDIT 🎬</h1>
 
-    <h1>YOU UNLOCKED<br>ANOTHER YEAR ✨</h1>
+<video controls>
+<source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+</video>
 
-    <button class="btn" onclick="celebrate()">
-      Celebrate 🎊
-    </button>
+<button class="btn" onclick="nextPage('memories')">
+NEXT
+</button>
 
-  </section>
+</section>
 
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<!-- MEMORIES -->
 
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<section class="page" id="memories">
 
-  <script>
+<h1>CORE MEMORIES 📸</h1>
 
-    var typed = new Typed('#typed', {
+<div class="gallery">
 
-      strings:[
-        'Loading birthday surprises...',
-        'Best friend detected...',
-        'Legendary human unlocked...',
-        '999+ memories loaded...'
-      ],
+<div class="card">
+<img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop">
+<p>chaos level 100 ✨</p>
+</div>
 
-      typeSpeed:50,
-      backSpeed:30,
-      loop:true
+<div class="card">
+<img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1000&auto=format&fit=crop">
+<p>professional idiots 💀</p>
+</div>
 
-    });
+<div class="card">
+<img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1000&auto=format&fit=crop">
+<p>certified gamer duo 🎮</p>
+</div>
 
-    function celebrate(){
+</div>
 
-      confetti({
-        particleCount:250,
-        spread:120,
-        origin:{ y:0.6 }
-      });
+<button class="btn" onclick="nextPage('music')">
+NEXT
+</button>
 
-    }
+</section>
 
-    for(let i=0;i<30;i++){
+<!-- MUSIC -->
 
-      let star=document.createElement('div');
+<section class="page" id="music">
 
-      star.classList.add('floating');
+<h1>YOUR SOUNDTRACK 🎵</h1>
 
-      star.style.left=Math.random()*100+'vw';
+<p>
+Every legendary duo needs a soundtrack.
+</p>
 
-      star.style.animationDuration=
-      (Math.random()*5+5)+'s';
+<audio controls autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
 
-      star.style.opacity=Math.random();
+<button class="btn" onclick="nextPage('letterPage')">
+NEXT
+</button>
 
-      document.body.appendChild(star);
+</section>
 
-    }
+<!-- LETTER -->
 
-  </script>
+<section class="page" id="letterPage">
+
+<div class="letter">
+
+<h1>MESSAGE FOR YOU 💌</h1>
+
+<p>
+
+Happy Birthday to one of my favorite humans ever.<br><br>
+
+Thank you for every stupid joke,
+every random late-night conversation,
+every chaotic memory,
+and every moment that made life better.<br><br>
+
+You genuinely deserve happiness,
+success,
+peace,
+and unlimited gamer wins 🎮✨
+
+</p>
+
+</div>
+
+<button class="btn" onclick="nextPage('finalPage')">
+FINAL LEVEL
+</button>
+
+</section>
+
+<!-- FINAL -->
+
+<section class="page" id="finalPage">
+
+<h1 class="final">
+MISSION COMPLETE ✨
+</h1>
+
+<p>
+You unlocked another legendary year 🎉
+</p>
+
+<button class="btn" onclick="celebrate()">
+CELEBRATE 🎊
+</button>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+
+function nextPage(id){
+
+document.querySelectorAll('.page')
+.forEach(page=>page.classList.remove('active'));
+
+document.getElementById(id)
+.classList.add('active');
+
+}
+
+function checkPassword(){
+
+let password=document.getElementById('pass').value;
+
+if(password==="bestie"){
+
+nextPage('choice');
+
+}
+else{
+
+alert("WRONG PASSWORD 💀");
+
+}
+
+}
+
+function ragebait(){
+
+alert("WRONG ANSWER.\nYOU HAVE NO CHOICE NOW 😭");
+
+nextPage('videoPage');
+
+}
+
+function celebrate(){
+
+confetti({
+particleCount:300,
+spread:150,
+origin:{ y:0.6 }
+});
+
+}
+
+for(let i=0;i<40;i++){
+
+let star=document.createElement('div');
+
+star.classList.add('floating');
+
+star.style.left=Math.random()*100+'vw';
+
+star.style.animationDuration=
+(Math.random()*5+5)+'s';
+
+document.body.appendChild(star);
+
+}
+
+</script>
 
 </body>
 </html>
