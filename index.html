@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Birthday Quest</title>
+<title>Birthday Mission</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
@@ -19,9 +19,9 @@ scroll-behavior:smooth;
 
 body{
 font-family:'Poppins',sans-serif;
-background:#09090f;
-overflow:hidden;
+background:#06070d;
 color:white;
+overflow:hidden;
 }
 
 .page{
@@ -36,10 +36,12 @@ padding:20px;
 position:absolute;
 top:0;
 left:0;
+overflow-y:auto;
+
 background:
 radial-gradient(circle at top left,#00e5ff22,transparent 30%),
 radial-gradient(circle at bottom right,#ff00ff22,transparent 30%),
-#09090f;
+linear-gradient(to bottom,#06070d,#0d111f);
 }
 
 .active{
@@ -48,21 +50,21 @@ display:flex;
 
 h1{
 font-family:'Press Start 2P',cursive;
-font-size:2.5rem;
-line-height:1.5;
+font-size:2.2rem;
+line-height:1.7;
+margin-bottom:30px;
 color:#00e5ff;
 text-shadow:0 0 20px #00e5ff;
-margin-bottom:30px;
 }
 
 p{
-max-width:700px;
+max-width:800px;
 line-height:2;
 font-size:1.1rem;
 }
 
 .btn{
-padding:15px 30px;
+padding:15px 35px;
 margin:15px;
 border:none;
 border-radius:50px;
@@ -72,21 +74,22 @@ font-size:1rem;
 transition:0.3s;
 background:linear-gradient(45deg,#00e5ff,#ff00ff);
 color:white;
-box-shadow:0 0 20px #00e5ff55;
+box-shadow:0 0 25px #00e5ff55;
 }
 
 .btn:hover{
 transform:scale(1.08);
+box-shadow:0 0 35px #ff00ff88;
 }
 
 input{
 padding:15px;
 border:none;
-border-radius:15px;
-width:250px;
-margin-top:20px;
+border-radius:20px;
+width:260px;
 font-size:1rem;
 text-align:center;
+margin-top:20px;
 }
 
 .gallery{
@@ -94,20 +97,21 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
 width:100%;
-max-width:1100px;
-margin-top:40px;
+max-width:1200px;
+margin-top:30px;
 }
 
 .card{
 background:rgba(255,255,255,0.07);
+backdrop-filter:blur(10px);
 border-radius:25px;
 overflow:hidden;
-backdrop-filter:blur(10px);
 transition:0.4s;
+border:1px solid rgba(255,255,255,0.1);
 }
 
 .card:hover{
-transform:translateY(-10px);
+transform:translateY(-10px) scale(1.03);
 }
 
 .card img{
@@ -122,10 +126,10 @@ padding:20px;
 
 video{
 width:90%;
-max-width:800px;
+max-width:850px;
 border-radius:25px;
 margin-top:20px;
-box-shadow:0 0 30px #00e5ff55;
+box-shadow:0 0 40px #00e5ff55;
 }
 
 audio{
@@ -135,11 +139,12 @@ width:300px;
 
 .letter{
 background:rgba(255,255,255,0.08);
-padding:40px;
+padding:45px;
 border-radius:30px;
 max-width:850px;
 line-height:2;
-backdrop-filter:blur(10px);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.1);
 }
 
 .final{
@@ -162,8 +167,8 @@ width:10px;
 height:10px;
 background:#00e5ff;
 border-radius:50%;
-opacity:0.5;
-animation:float 8s linear infinite;
+opacity:0.4;
+animation:float 10s linear infinite;
 }
 
 @keyframes float{
@@ -175,10 +180,53 @@ transform:translateY(-100vh);
 }
 }
 
+.loading{
+font-size:1.2rem;
+margin-top:20px;
+color:#ff9dfd;
+}
+
+.badge{
+padding:12px 20px;
+background:#111827;
+border-radius:15px;
+margin:10px;
+border:1px solid #00e5ff55;
+}
+
+.quiz{
+margin-top:20px;
+}
+
+.spotify{
+background:#111827;
+padding:20px;
+border-radius:25px;
+width:320px;
+margin-top:20px;
+box-shadow:0 0 20px #00e5ff33;
+}
+
+.spotify h3{
+margin-bottom:10px;
+}
+
+.cursor{
+width:20px;
+height:20px;
+border:2px solid #00e5ff;
+border-radius:50%;
+position:fixed;
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:999;
+box-shadow:0 0 15px #00e5ff;
+}
+
 @media(max-width:768px){
 
 h1{
-font-size:1.4rem;
+font-size:1.3rem;
 }
 
 .final{
@@ -192,17 +240,31 @@ font-size:2.5rem;
 
 <body>
 
+<div class="cursor" id="cursor"></div>
+
+<!-- LOADING -->
+
+<section class="page active" id="loadingPage">
+
+<h1>BOOTING BIRTHDAY.EXE 🎮</h1>
+
+<div class="loading" id="loadingText">
+Loading memories...
+</div>
+
+</section>
+
 <!-- HOME -->
 
-<section class="page active" id="home">
+<section class="page" id="home">
 
-<h1>WELCOME PLAYER ONE 🎮</h1>
+<h1>WELCOME TO<br>THE BIRTHDAY QUEST 🎮</h1>
 
 <p>
-A special birthday quest has been prepared for you ✨
+A special mission has been prepared for the most chaotic gamer alive ✨
 </p>
 
-<button class="btn" onclick="nextPage('password')">
+<button class="btn" onclick="nextPage('passwordPage')">
 START GAME
 </button>
 
@@ -210,11 +272,13 @@ START GAME
 
 <!-- PASSWORD -->
 
-<section class="page" id="password">
+<section class="page" id="passwordPage">
 
 <h1>ENTER SECRET CODE 🔐</h1>
 
-<p>Hint: your nickname / inside joke</p>
+<p>
+Hint: your nickname / inside joke
+</p>
 
 <input type="password" id="pass">
 
@@ -224,11 +288,11 @@ UNLOCK
 
 </section>
 
-<!-- YES OR NO -->
+<!-- CHOICE -->
 
-<section class="page" id="choice">
+<section class="page" id="choicePage">
 
-<h1>ARE YOU READY FOR<br>EMOTIONAL DAMAGE? 💀</h1>
+<h1>ARE YOU READY<br>FOR EMOTIONAL DAMAGE? 💀</h1>
 
 <div>
 
@@ -254,15 +318,15 @@ NO
 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
 </video>
 
-<button class="btn" onclick="nextPage('memories')">
-NEXT
+<button class="btn" onclick="nextPage('memoriesPage')">
+NEXT LEVEL
 </button>
 
 </section>
 
 <!-- MEMORIES -->
 
-<section class="page" id="memories">
+<section class="page" id="memoriesPage">
 
 <h1>CORE MEMORIES 📸</h1>
 
@@ -270,43 +334,77 @@ NEXT
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop">
-<p>chaos level 100 ✨</p>
+<p>professional chaos creators 💀</p>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1000&auto=format&fit=crop">
-<p>professional idiots 💀</p>
+<p>elite gamer duo 🎮</p>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1000&auto=format&fit=crop">
-<p>certified gamer duo 🎮</p>
+<p>999+ memories unlocked ✨</p>
 </div>
 
 </div>
 
-<button class="btn" onclick="nextPage('music')">
-NEXT
+<button class="btn" onclick="nextPage('spotifyPage')">
+CONTINUE
 </button>
 
 </section>
 
-<!-- MUSIC -->
+<!-- SPOTIFY -->
 
-<section class="page" id="music">
+<section class="page" id="spotifyPage">
 
 <h1>YOUR SOUNDTRACK 🎵</h1>
 
+<div class="spotify">
+
+<h3>NOW PLAYING</h3>
+
 <p>
-Every legendary duo needs a soundtrack.
+Favorite Chaos Anthem 🎧
 </p>
 
 <audio controls autoplay loop>
 <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
 </audio>
 
-<button class="btn" onclick="nextPage('letterPage')">
+</div>
+
+<button class="btn" onclick="nextPage('quizPage')">
 NEXT
+</button>
+
+</section>
+
+<!-- QUIZ -->
+
+<section class="page" id="quizPage">
+
+<h1>BESTIE QUIZ 🎯</h1>
+
+<div class="quiz">
+
+<p>
+Who is the cooler person?
+</p>
+
+<button class="btn" onclick="alert('WRONG ANSWER 😭')">
+YOU
+</button>
+
+<button class="btn" onclick="alert('CORRECT ANSWER 🎉')">
+ME
+</button>
+
+</div>
+
+<button class="btn" onclick="nextPage('letterPage')">
+FINAL MESSAGE
 </button>
 
 </section>
@@ -323,19 +421,36 @@ NEXT
 
 Happy Birthday to one of my favorite humans ever.<br><br>
 
-Thank you for every stupid joke,
-every random late-night conversation,
+Thank you for every random conversation,
+every stupid joke,
 every chaotic memory,
-and every moment that made life better.<br><br>
+and every moment that made life more fun.<br><br>
 
 You genuinely deserve happiness,
-success,
 peace,
-and unlimited gamer wins 🎮✨
+success,
+and unlimited GTA wins 🎮✨
 
 </p>
 
 </div>
+
+<button class="btn" onclick="nextPage('badgePage')">
+ACHIEVEMENTS
+</button>
+
+</section>
+
+<!-- BADGES -->
+
+<section class="page" id="badgePage">
+
+<h1>PLAYER ACHIEVEMENTS 🏆</h1>
+
+<div class="badge">✔ Certified Chaos Partner</div>
+<div class="badge">✔ Elite Gamer Energy</div>
+<div class="badge">✔ 999+ Memories Unlocked</div>
+<div class="badge">✔ Main Character Vibes</div>
 
 <button class="btn" onclick="nextPage('finalPage')">
 FINAL LEVEL
@@ -352,7 +467,7 @@ MISSION COMPLETE ✨
 </h1>
 
 <p>
-You unlocked another legendary year 🎉
+Another legendary year unlocked 🎉
 </p>
 
 <button class="btn" onclick="celebrate()">
@@ -364,6 +479,12 @@ CELEBRATE 🎊
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
+
+setTimeout(()=>{
+
+nextPage('home');
+
+},3000);
 
 function nextPage(id){
 
@@ -381,12 +502,12 @@ let password=document.getElementById('pass').value;
 
 if(password==="bestie"){
 
-nextPage('choice');
+nextPage('choicePage');
 
 }
 else{
 
-alert("WRONG PASSWORD 💀");
+alert("ACCESS DENIED 💀");
 
 }
 
@@ -394,7 +515,7 @@ alert("WRONG PASSWORD 💀");
 
 function ragebait(){
 
-alert("WRONG ANSWER.\nYOU HAVE NO CHOICE NOW 😭");
+alert("WRONG ANSWER 😭");
 
 nextPage('videoPage');
 
@@ -403,14 +524,14 @@ nextPage('videoPage');
 function celebrate(){
 
 confetti({
-particleCount:300,
+particleCount:350,
 spread:150,
 origin:{ y:0.6 }
 });
 
 }
 
-for(let i=0;i<40;i++){
+for(let i=0;i<50;i++){
 
 let star=document.createElement('div');
 
@@ -424,6 +545,15 @@ star.style.animationDuration=
 document.body.appendChild(star);
 
 }
+
+const cursor=document.getElementById('cursor');
+
+document.addEventListener('mousemove',(e)=>{
+
+cursor.style.left=e.clientX+'px';
+cursor.style.top=e.clientY+'px';
+
+});
 
 </script>
 
