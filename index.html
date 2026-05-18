@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Birthday Mission</title>
+<title>Birthday Quest</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,29 +19,46 @@ scroll-behavior:smooth;
 
 body{
 font-family:'Poppins',sans-serif;
-background:#06070d;
-color:white;
+background:#050816;
 overflow:hidden;
+color:white;
+cursor:none;
 }
 
+/* CUSTOM CURSOR */
+
+.cursor{
+width:20px;
+height:20px;
+border:2px solid #00e5ff;
+border-radius:50%;
+position:fixed;
+pointer-events:none;
+z-index:999;
+box-shadow:0 0 20px #00e5ff;
+transform:translate(-50%,-50%);
+}
+
+/* PAGES */
+
 .page{
+position:absolute;
+top:0;
+left:0;
 width:100%;
 height:100vh;
 display:none;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-text-align:center;
 padding:20px;
-position:absolute;
-top:0;
-left:0;
 overflow-y:auto;
+text-align:center;
 
 background:
 radial-gradient(circle at top left,#00e5ff22,transparent 30%),
 radial-gradient(circle at bottom right,#ff00ff22,transparent 30%),
-linear-gradient(to bottom,#06070d,#0d111f);
+linear-gradient(to bottom,#050816,#0f172a);
 }
 
 .active{
@@ -49,11 +66,11 @@ display:flex;
 }
 
 h1{
-font-family:'Press Start 2P',cursive;
-font-size:2.2rem;
-line-height:1.7;
-margin-bottom:30px;
+font-family:'Orbitron',sans-serif;
+font-size:2.5rem;
+line-height:1.6;
 color:#00e5ff;
+margin-bottom:25px;
 text-shadow:0 0 20px #00e5ff;
 }
 
@@ -68,19 +85,44 @@ padding:15px 35px;
 margin:15px;
 border:none;
 border-radius:50px;
-cursor:pointer;
 font-weight:700;
+cursor:pointer;
 font-size:1rem;
 transition:0.3s;
 background:linear-gradient(45deg,#00e5ff,#ff00ff);
 color:white;
-box-shadow:0 0 25px #00e5ff55;
+box-shadow:0 0 25px #00e5ff66;
 }
 
 .btn:hover{
 transform:scale(1.08);
-box-shadow:0 0 35px #ff00ff88;
 }
+
+/* LOADING BAR */
+
+.loader{
+width:300px;
+height:20px;
+border-radius:20px;
+background:#111827;
+overflow:hidden;
+margin-top:30px;
+}
+
+.bar{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#00e5ff,#ff00ff);
+animation:load 3s forwards;
+}
+
+@keyframes load{
+100%{
+width:100%;
+}
+}
+
+/* PASSWORD */
 
 input{
 padding:15px;
@@ -92,26 +134,55 @@ text-align:center;
 margin-top:20px;
 }
 
+/* DESKTOP */
+
+.desktop{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:30px;
+width:100%;
+max-width:900px;
+margin-top:40px;
+}
+
+.app{
+background:rgba(255,255,255,0.08);
+padding:30px;
+border-radius:25px;
+backdrop-filter:blur(10px);
+transition:0.4s;
+cursor:pointer;
+}
+
+.app:hover{
+transform:translateY(-10px);
+box-shadow:0 0 30px #00e5ff55;
+}
+
+.app h3{
+margin-top:15px;
+}
+
+/* GALLERY */
+
 .gallery{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
 width:100%;
-max-width:1200px;
-margin-top:30px;
+max-width:1100px;
+margin-top:40px;
 }
 
 .card{
-background:rgba(255,255,255,0.07);
-backdrop-filter:blur(10px);
+background:rgba(255,255,255,0.08);
 border-radius:25px;
 overflow:hidden;
 transition:0.4s;
-border:1px solid rgba(255,255,255,0.1);
 }
 
 .card:hover{
-transform:translateY(-10px) scale(1.03);
+transform:scale(1.04);
 }
 
 .card img{
@@ -124,28 +195,64 @@ object-fit:cover;
 padding:20px;
 }
 
-video{
-width:90%;
-max-width:850px;
+/* CHAT */
+
+.chat{
+background:#111827;
+padding:25px;
 border-radius:25px;
-margin-top:20px;
-box-shadow:0 0 40px #00e5ff55;
+width:90%;
+max-width:500px;
+margin-top:30px;
+text-align:left;
 }
 
-audio{
-margin-top:30px;
-width:300px;
+.msg{
+margin:15px 0;
+padding:12px 18px;
+border-radius:20px;
+width:fit-content;
+max-width:80%;
 }
+
+.you{
+background:#00e5ff33;
+margin-left:auto;
+}
+
+.him{
+background:#ff00ff33;
+}
+
+/* LETTER */
 
 .letter{
 background:rgba(255,255,255,0.08);
-padding:45px;
+padding:40px;
 border-radius:30px;
 max-width:850px;
 line-height:2;
-backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
 }
+
+/* ACHIEVEMENTS */
+
+.badges{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+margin-top:30px;
+}
+
+.badge{
+padding:15px 20px;
+border-radius:20px;
+background:#111827;
+border:1px solid #00e5ff55;
+}
+
+/* FINAL */
 
 .final{
 font-size:4rem;
@@ -157,18 +264,20 @@ from{
 text-shadow:0 0 10px #00e5ff;
 }
 to{
-text-shadow:0 0 30px #ff00ff;
+text-shadow:0 0 35px #ff00ff;
 }
 }
 
-.floating{
+/* FLOATING PARTICLES */
+
+.float{
 position:absolute;
 width:10px;
 height:10px;
 background:#00e5ff;
 border-radius:50%;
 opacity:0.4;
-animation:float 10s linear infinite;
+animation:float 8s linear infinite;
 }
 
 @keyframes float{
@@ -180,53 +289,10 @@ transform:translateY(-100vh);
 }
 }
 
-.loading{
-font-size:1.2rem;
-margin-top:20px;
-color:#ff9dfd;
-}
-
-.badge{
-padding:12px 20px;
-background:#111827;
-border-radius:15px;
-margin:10px;
-border:1px solid #00e5ff55;
-}
-
-.quiz{
-margin-top:20px;
-}
-
-.spotify{
-background:#111827;
-padding:20px;
-border-radius:25px;
-width:320px;
-margin-top:20px;
-box-shadow:0 0 20px #00e5ff33;
-}
-
-.spotify h3{
-margin-bottom:10px;
-}
-
-.cursor{
-width:20px;
-height:20px;
-border:2px solid #00e5ff;
-border-radius:50%;
-position:fixed;
-pointer-events:none;
-transform:translate(-50%,-50%);
-z-index:999;
-box-shadow:0 0 15px #00e5ff;
-}
-
 @media(max-width:768px){
 
 h1{
-font-size:1.3rem;
+font-size:1.4rem;
 }
 
 .final{
@@ -244,65 +310,75 @@ font-size:2.5rem;
 
 <!-- LOADING -->
 
-<section class="page active" id="loadingPage">
+<section class="page active" id="loading">
 
-<h1>BOOTING BIRTHDAY.EXE 🎮</h1>
+<h1>BOOTING BIRTHDAY SYSTEM 🎮</h1>
 
-<div class="loading" id="loadingText">
-Loading memories...
+<p>
+Initializing memories...
+</p>
+
+<div class="loader">
+<div class="bar"></div>
 </div>
 
 </section>
 
-<!-- HOME -->
+<!-- LOGIN -->
 
-<section class="page" id="home">
+<section class="page" id="login">
 
-<h1>WELCOME TO<br>THE BIRTHDAY QUEST 🎮</h1>
-
-<p>
-A special mission has been prepared for the most chaotic gamer alive ✨
-</p>
-
-<button class="btn" onclick="nextPage('passwordPage')">
-START GAME
-</button>
-
-</section>
-
-<!-- PASSWORD -->
-
-<section class="page" id="passwordPage">
-
-<h1>ENTER SECRET CODE 🔐</h1>
+<h1>ACCESS REQUIRED 🔐</h1>
 
 <p>
-Hint: your nickname / inside joke
+Enter the secret gamer code
 </p>
 
-<input type="password" id="pass">
+<input type="password" id="password">
 
 <button class="btn" onclick="checkPassword()">
-UNLOCK
+ACCESS SYSTEM
 </button>
 
 </section>
 
-<!-- CHOICE -->
+<!-- DESKTOP -->
 
-<section class="page" id="choicePage">
+<section class="page" id="desktopPage">
 
-<h1>ARE YOU READY<br>FOR EMOTIONAL DAMAGE? 💀</h1>
+<h1>PLAYER DESKTOP 🖥️</h1>
 
-<div>
+<div class="desktop">
 
-<button class="btn" onclick="nextPage('videoPage')">
-YES
-</button>
+<div class="app" onclick="openPage('videoPage')">
+🎬
+<h3>MAIN EDIT</h3>
+</div>
 
-<button class="btn" onclick="ragebait()">
-NO
-</button>
+<div class="app" onclick="openPage('memoryPage')">
+📸
+<h3>MEMORIES</h3>
+</div>
+
+<div class="app" onclick="openPage('musicPage')">
+🎵
+<h3>PLAYLIST</h3>
+</div>
+
+<div class="app" onclick="openPage('chatPage')">
+💬
+<h3>CHATS</h3>
+</div>
+
+<div class="app" onclick="openPage('letterPage')">
+💌
+<h3>LETTER</h3>
+</div>
+
+<div class="app" onclick="openPage('achievementPage')">
+🏆
+<h3>ACHIEVEMENTS</h3>
+</div>
 
 </div>
 
@@ -314,19 +390,19 @@ NO
 
 <h1>MAIN CHARACTER EDIT 🎬</h1>
 
-<video controls>
+<video width="90%" controls style="border-radius:25px;">
 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
 </video>
 
-<button class="btn" onclick="nextPage('memoriesPage')">
-NEXT LEVEL
+<button class="btn" onclick="backDesktop()">
+BACK
 </button>
 
 </section>
 
 <!-- MEMORIES -->
 
-<section class="page" id="memoriesPage">
+<section class="page" id="memoryPage">
 
 <h1>CORE MEMORIES 📸</h1>
 
@@ -334,77 +410,71 @@ NEXT LEVEL
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop">
-<p>professional chaos creators 💀</p>
+<p>chaos level 100 💀</p>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1000&auto=format&fit=crop">
-<p>elite gamer duo 🎮</p>
+<p>gamer duo 🎮</p>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1000&auto=format&fit=crop">
-<p>999+ memories unlocked ✨</p>
+<p>999+ memories ✨</p>
 </div>
 
 </div>
 
-<button class="btn" onclick="nextPage('spotifyPage')">
-CONTINUE
+<button class="btn" onclick="backDesktop()">
+BACK
 </button>
 
 </section>
 
-<!-- SPOTIFY -->
+<!-- MUSIC -->
 
-<section class="page" id="spotifyPage">
+<section class="page" id="musicPage">
 
 <h1>YOUR SOUNDTRACK 🎵</h1>
-
-<div class="spotify">
-
-<h3>NOW PLAYING</h3>
-
-<p>
-Favorite Chaos Anthem 🎧
-</p>
 
 <audio controls autoplay loop>
 <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
 </audio>
 
-</div>
-
-<button class="btn" onclick="nextPage('quizPage')">
-NEXT
+<button class="btn" onclick="backDesktop()">
+BACK
 </button>
 
 </section>
 
-<!-- QUIZ -->
+<!-- CHAT -->
 
-<section class="page" id="quizPage">
+<section class="page" id="chatPage">
 
-<h1>BESTIE QUIZ 🎯</h1>
+<h1>CLASSIFIED CHATS 💬</h1>
 
-<div class="quiz">
+<div class="chat">
 
-<p>
-Who is the cooler person?
-</p>
+<div class="msg him">
+bro where are you
+</div>
 
-<button class="btn" onclick="alert('WRONG ANSWER 😭')">
-YOU
-</button>
+<div class="msg you">
+coming in 2 mins
+</div>
 
-<button class="btn" onclick="alert('CORRECT ANSWER 🎉')">
-ME
-</button>
+<div class="msg him">
+that was 4 hours ago 💀
+</div>
+
+<div class="msg you">
+minor delay
+</div>
 
 </div>
 
-<button class="btn" onclick="nextPage('letterPage')">
-FINAL MESSAGE
+<button class="btn" onclick="backDesktop()">
+BACK
 </button>
 
 </section>
@@ -421,10 +491,10 @@ FINAL MESSAGE
 
 Happy Birthday to one of my favorite humans ever.<br><br>
 
-Thank you for every random conversation,
-every stupid joke,
+Thank you for every random joke,
 every chaotic memory,
-and every moment that made life more fun.<br><br>
+every late-night conversation,
+and every moment that made life better.<br><br>
 
 You genuinely deserve happiness,
 peace,
@@ -435,25 +505,40 @@ and unlimited GTA wins 🎮✨
 
 </div>
 
-<button class="btn" onclick="nextPage('badgePage')">
-ACHIEVEMENTS
+<button class="btn" onclick="backDesktop()">
+BACK
 </button>
 
 </section>
 
-<!-- BADGES -->
+<!-- ACHIEVEMENTS -->
 
-<section class="page" id="badgePage">
+<section class="page" id="achievementPage">
 
 <h1>PLAYER ACHIEVEMENTS 🏆</h1>
 
-<div class="badge">✔ Certified Chaos Partner</div>
-<div class="badge">✔ Elite Gamer Energy</div>
-<div class="badge">✔ 999+ Memories Unlocked</div>
-<div class="badge">✔ Main Character Vibes</div>
+<div class="badges">
 
-<button class="btn" onclick="nextPage('finalPage')">
-FINAL LEVEL
+<div class="badge">
+✔ Certified Chaos Partner
+</div>
+
+<div class="badge">
+✔ GTA Addict
+</div>
+
+<div class="badge">
+✔ Main Character Energy
+</div>
+
+<div class="badge">
+✔ 999+ Memories Unlocked
+</div>
+
+</div>
+
+<button class="btn" onclick="finalPage()">
+FINAL MISSION
 </button>
 
 </section>
@@ -463,15 +548,15 @@ FINAL LEVEL
 <section class="page" id="finalPage">
 
 <h1 class="final">
-MISSION COMPLETE ✨
+MISSION COMPLETE 🎉
 </h1>
 
 <p>
-Another legendary year unlocked 🎉
+Another legendary year unlocked ✨
 </p>
 
 <button class="btn" onclick="celebrate()">
-CELEBRATE 🎊
+CELEBRATE
 </button>
 
 </section>
@@ -480,13 +565,17 @@ CELEBRATE 🎊
 
 <script>
 
+/* LOADING */
+
 setTimeout(()=>{
 
-nextPage('home');
+openPage('login');
 
 },3000);
 
-function nextPage(id){
+/* PAGE CONTROL */
+
+function openPage(id){
 
 document.querySelectorAll('.page')
 .forEach(page=>page.classList.remove('active'));
@@ -496,13 +585,27 @@ document.getElementById(id)
 
 }
 
+function backDesktop(){
+
+openPage('desktopPage');
+
+}
+
+function finalPage(){
+
+openPage('finalPage');
+
+}
+
+/* PASSWORD */
+
 function checkPassword(){
 
-let password=document.getElementById('pass').value;
+let pass=document.getElementById('password').value;
 
-if(password==="bestie"){
+if(pass==="bestie"){
 
-nextPage('choicePage');
+openPage('desktopPage');
 
 }
 else{
@@ -513,38 +616,36 @@ alert("ACCESS DENIED 💀");
 
 }
 
-function ragebait(){
-
-alert("WRONG ANSWER 😭");
-
-nextPage('videoPage');
-
-}
+/* CONFETTI */
 
 function celebrate(){
 
 confetti({
-particleCount:350,
-spread:150,
-origin:{ y:0.6 }
+particleCount:400,
+spread:180,
+origin:{y:0.6}
 });
 
 }
 
+/* FLOATING PARTICLES */
+
 for(let i=0;i<50;i++){
 
-let star=document.createElement('div');
+let particle=document.createElement('div');
 
-star.classList.add('floating');
+particle.classList.add('float');
 
-star.style.left=Math.random()*100+'vw';
+particle.style.left=Math.random()*100+'vw';
 
-star.style.animationDuration=
+particle.style.animationDuration=
 (Math.random()*5+5)+'s';
 
-document.body.appendChild(star);
+document.body.appendChild(particle);
 
 }
+
+/* CURSOR */
 
 const cursor=document.getElementById('cursor');
 
