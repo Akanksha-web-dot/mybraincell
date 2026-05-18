@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Birthday Quest</title>
+<title>GTA Birthday Quest</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -25,6 +25,34 @@ color:white;
 cursor:none;
 }
 
+/* GTA BACKGROUND */
+
+body::before{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+background:
+linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+z-index:-2;
+filter:blur(3px);
+}
+
+body::after{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+background:
+linear-gradient(transparent 95%, rgba(0,255,255,0.08) 100%);
+background-size:100% 5px;
+z-index:-1;
+pointer-events:none;
+}
+
 /* CUSTOM CURSOR */
 
 .cursor{
@@ -34,9 +62,9 @@ border:2px solid #00e5ff;
 border-radius:50%;
 position:fixed;
 pointer-events:none;
-z-index:999;
-box-shadow:0 0 20px #00e5ff;
+z-index:9999;
 transform:translate(-50%,-50%);
+box-shadow:0 0 20px #00e5ff;
 }
 
 /* PAGES */
@@ -54,34 +82,34 @@ flex-direction:column;
 padding:20px;
 overflow-y:auto;
 text-align:center;
-
-background:
-radial-gradient(circle at top left,#00e5ff22,transparent 30%),
-radial-gradient(circle at bottom right,#ff00ff22,transparent 30%),
-linear-gradient(to bottom,#050816,#0f172a);
+backdrop-filter:blur(5px);
 }
 
 .active{
 display:flex;
 }
 
+/* HEADINGS */
+
 h1{
 font-family:'Orbitron',sans-serif;
-font-size:2.5rem;
-line-height:1.6;
-color:#00e5ff;
+font-size:2.7rem;
+line-height:1.5;
 margin-bottom:25px;
-text-shadow:0 0 20px #00e5ff;
+color:#00e5ff;
+text-shadow:0 0 25px #00e5ff;
 }
 
 p{
-max-width:800px;
+max-width:850px;
 line-height:2;
 font-size:1.1rem;
 }
 
+/* BUTTONS */
+
 .btn{
-padding:15px 35px;
+padding:16px 38px;
 margin:15px;
 border:none;
 border-radius:50px;
@@ -96,24 +124,26 @@ box-shadow:0 0 25px #00e5ff66;
 
 .btn:hover{
 transform:scale(1.08);
+box-shadow:0 0 40px #ff00ff;
 }
 
-/* LOADING BAR */
+/* LOADING SCREEN */
 
 .loader{
-width:300px;
+width:320px;
 height:20px;
-border-radius:20px;
 background:#111827;
+border-radius:20px;
 overflow:hidden;
 margin-top:30px;
+border:1px solid #00e5ff;
 }
 
 .bar{
 height:100%;
 width:0%;
 background:linear-gradient(90deg,#00e5ff,#ff00ff);
-animation:load 3s forwards;
+animation:load 4s forwards;
 }
 
 @keyframes load{
@@ -128,10 +158,13 @@ input{
 padding:15px;
 border:none;
 border-radius:20px;
-width:260px;
+width:280px;
 font-size:1rem;
 text-align:center;
 margin-top:20px;
+background:#111827;
+color:white;
+border:1px solid #00e5ff55;
 }
 
 /* DESKTOP */
@@ -141,7 +174,7 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
 gap:30px;
 width:100%;
-max-width:900px;
+max-width:1000px;
 margin-top:40px;
 }
 
@@ -152,11 +185,12 @@ border-radius:25px;
 backdrop-filter:blur(10px);
 transition:0.4s;
 cursor:pointer;
+border:1px solid rgba(255,255,255,0.1);
 }
 
 .app:hover{
 transform:translateY(-10px);
-box-shadow:0 0 30px #00e5ff55;
+box-shadow:0 0 35px #00e5ff55;
 }
 
 .app h3{
@@ -170,7 +204,7 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
 width:100%;
-max-width:1100px;
+max-width:1200px;
 margin-top:40px;
 }
 
@@ -179,10 +213,11 @@ background:rgba(255,255,255,0.08);
 border-radius:25px;
 overflow:hidden;
 transition:0.4s;
+border:1px solid rgba(255,255,255,0.1);
 }
 
 .card:hover{
-transform:scale(1.04);
+transform:scale(1.05);
 }
 
 .card img{
@@ -195,16 +230,17 @@ object-fit:cover;
 padding:20px;
 }
 
-/* CHAT */
+/* CHAT UI */
 
 .chat{
 background:#111827;
 padding:25px;
 border-radius:25px;
 width:90%;
-max-width:500px;
+max-width:550px;
 margin-top:30px;
 text-align:left;
+border:1px solid #00e5ff44;
 }
 
 .msg{
@@ -224,6 +260,24 @@ margin-left:auto;
 background:#ff00ff33;
 }
 
+/* PLAYER STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+width:100%;
+max-width:900px;
+margin-top:30px;
+}
+
+.stat{
+background:#111827;
+padding:25px;
+border-radius:20px;
+border:1px solid #00e5ff44;
+}
+
 /* LETTER */
 
 .letter{
@@ -235,7 +289,7 @@ line-height:2;
 backdrop-filter:blur(10px);
 }
 
-/* ACHIEVEMENTS */
+/* BADGES */
 
 .badges{
 display:flex;
@@ -264,7 +318,7 @@ from{
 text-shadow:0 0 10px #00e5ff;
 }
 to{
-text-shadow:0 0 35px #ff00ff;
+text-shadow:0 0 40px #ff00ff;
 }
 }
 
@@ -276,8 +330,8 @@ width:10px;
 height:10px;
 background:#00e5ff;
 border-radius:50%;
-opacity:0.4;
-animation:float 8s linear infinite;
+opacity:0.5;
+animation:float 10s linear infinite;
 }
 
 @keyframes float{
@@ -292,7 +346,7 @@ transform:translateY(-100vh);
 @media(max-width:768px){
 
 h1{
-font-size:1.4rem;
+font-size:1.5rem;
 }
 
 .final{
@@ -310,12 +364,14 @@ font-size:2.5rem;
 
 <!-- LOADING -->
 
-<section class="page active" id="loading">
+<section class="page active" id="loadingPage">
 
-<h1>BOOTING BIRTHDAY SYSTEM 🎮</h1>
+<h1>BOOTING GTA BIRTHDAY SYSTEM 🎮</h1>
 
 <p>
-Initializing memories...
+Loading memories...<br>
+Initializing chaos...<br>
+Preparing emotional damage...
 </p>
 
 <div class="loader">
@@ -326,7 +382,7 @@ Initializing memories...
 
 <!-- LOGIN -->
 
-<section class="page" id="login">
+<section class="page" id="loginPage">
 
 <h1>ACCESS REQUIRED 🔐</h1>
 
@@ -339,6 +395,26 @@ Enter the secret gamer code
 <button class="btn" onclick="checkPassword()">
 ACCESS SYSTEM
 </button>
+
+</section>
+
+<!-- CHOICE -->
+
+<section class="page" id="choicePage">
+
+<h1>READY FOR THIS QUEST? 🎯</h1>
+
+<div>
+
+<button class="btn" onclick="openPage('desktopPage')">
+YES
+</button>
+
+<button class="btn" onclick="ragebait()">
+NO
+</button>
+
+</div>
 
 </section>
 
@@ -370,6 +446,11 @@ ACCESS SYSTEM
 <h3>CHATS</h3>
 </div>
 
+<div class="app" onclick="openPage('statsPage')">
+🎮
+<h3>PLAYER STATS</h3>
+</div>
+
 <div class="app" onclick="openPage('letterPage')">
 💌
 <h3>LETTER</h3>
@@ -378,6 +459,11 @@ ACCESS SYSTEM
 <div class="app" onclick="openPage('achievementPage')">
 🏆
 <h3>ACHIEVEMENTS</h3>
+</div>
+
+<div class="app" onclick="openPage('secretPage')">
+🕵️
+<h3>SECRET FILE</h3>
 </div>
 
 </div>
@@ -394,9 +480,7 @@ ACCESS SYSTEM
 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
 </video>
 
-<button class="btn" onclick="backDesktop()">
-BACK
-</button>
+<button class="btn" onclick="backDesktop()">BACK</button>
 
 </section>
 
@@ -410,24 +494,22 @@ BACK
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop">
-<p>chaos level 100 💀</p>
+<p>professional chaos creators 💀</p>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1000&auto=format&fit=crop">
-<p>gamer duo 🎮</p>
+<p>elite gamer duo 🎮</p>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1000&auto=format&fit=crop">
-<p>999+ memories ✨</p>
+<p>999+ memories unlocked ✨</p>
 </div>
 
 </div>
 
-<button class="btn" onclick="backDesktop()">
-BACK
-</button>
+<button class="btn" onclick="backDesktop()">BACK</button>
 
 </section>
 
@@ -437,17 +519,19 @@ BACK
 
 <h1>YOUR SOUNDTRACK 🎵</h1>
 
+<p>
+Every GTA duo needs a soundtrack.
+</p>
+
 <audio controls autoplay loop>
 <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
 </audio>
 
-<button class="btn" onclick="backDesktop()">
-BACK
-</button>
+<button class="btn" onclick="backDesktop()">BACK</button>
 
 </section>
 
-<!-- CHAT -->
+<!-- CHATS -->
 
 <section class="page" id="chatPage">
 
@@ -471,11 +555,47 @@ that was 4 hours ago 💀
 minor delay
 </div>
 
+<div class="msg him">
+average gta player
 </div>
 
-<button class="btn" onclick="backDesktop()">
-BACK
-</button>
+</div>
+
+<button class="btn" onclick="backDesktop()">BACK</button>
+
+</section>
+
+<!-- STATS -->
+
+<section class="page" id="statsPage">
+
+<h1>PLAYER STATS 🎮</h1>
+
+<div class="stats">
+
+<div class="stat">
+<h3>LEVEL</h3>
+<p>20</p>
+</div>
+
+<div class="stat">
+<h3>SPECIAL ABILITY</h3>
+<p>ANNOYING ME</p>
+</div>
+
+<div class="stat">
+<h3>MAIN WEAPON</h3>
+<p>SARCASM</p>
+</div>
+
+<div class="stat">
+<h3>ENERGY</h3>
+<p>999%</p>
+</div>
+
+</div>
+
+<button class="btn" onclick="backDesktop()">BACK</button>
 
 </section>
 
@@ -491,10 +611,10 @@ BACK
 
 Happy Birthday to one of my favorite humans ever.<br><br>
 
-Thank you for every random joke,
+Thank you for every stupid joke,
+every random conversation,
 every chaotic memory,
-every late-night conversation,
-and every moment that made life better.<br><br>
+and every moment that made life more fun.<br><br>
 
 You genuinely deserve happiness,
 peace,
@@ -505,9 +625,7 @@ and unlimited GTA wins 🎮✨
 
 </div>
 
-<button class="btn" onclick="backDesktop()">
-BACK
-</button>
+<button class="btn" onclick="backDesktop()">BACK</button>
 
 </section>
 
@@ -532,14 +650,33 @@ BACK
 </div>
 
 <div class="badge">
+✔ Elite Gamer
+</div>
+
+<div class="badge">
 ✔ 999+ Memories Unlocked
 </div>
 
 </div>
 
-<button class="btn" onclick="finalPage()">
+<button class="btn" onclick="openPage('finalPage')">
 FINAL MISSION
 </button>
+
+</section>
+
+<!-- SECRET PAGE -->
+
+<section class="page" id="secretPage">
+
+<h1>SECRET FILE FOUND 🕵️</h1>
+
+<p>
+Congratulations.<br>
+You unlocked hidden bestfriend lore 😭
+</p>
+
+<button class="btn" onclick="backDesktop()">BACK</button>
 
 </section>
 
@@ -569,9 +706,9 @@ CELEBRATE
 
 setTimeout(()=>{
 
-openPage('login');
+openPage('loginPage');
 
-},3000);
+},4000);
 
 /* PAGE CONTROL */
 
@@ -591,12 +728,6 @@ openPage('desktopPage');
 
 }
 
-function finalPage(){
-
-openPage('finalPage');
-
-}
-
 /* PASSWORD */
 
 function checkPassword(){
@@ -605,7 +736,7 @@ let pass=document.getElementById('password').value;
 
 if(pass==="bestie"){
 
-openPage('desktopPage');
+openPage('choicePage');
 
 }
 else{
@@ -616,21 +747,31 @@ alert("ACCESS DENIED 💀");
 
 }
 
+/* NO BUTTON */
+
+function ragebait(){
+
+alert("WRONG ANSWER 😭 YOU HAVE NO CHOICE");
+
+openPage('desktopPage');
+
+}
+
 /* CONFETTI */
 
 function celebrate(){
 
 confetti({
-particleCount:400,
+particleCount:500,
 spread:180,
 origin:{y:0.6}
 });
 
 }
 
-/* FLOATING PARTICLES */
+/* PARTICLES */
 
-for(let i=0;i<50;i++){
+for(let i=0;i<60;i++){
 
 let particle=document.createElement('div');
 
