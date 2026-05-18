@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#0d0d0d;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    section{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      padding:50px 20px;
+      text-align:center;
+    }
+
+    .hero{
+      background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);
+    }
+
+    .hero h1{
+      font-size:4rem;
+      margin-bottom:20px;
+      text-shadow:0 0 20px #00c2ff;
+    }
+
+    .typing{
+      color:#00c2ff;
+      margin-bottom:30px;
+      font-size:1.2rem;
+    }
+
+    .btn{
+      padding:14px 28px;
+      border:none;
+      border-radius:40px;
+      background:#00c2ff;
+      color:black;
+      font-weight:600;
+      text-decoration:none;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:scale(1.05);
+      box-shadow:0 0 20px #00c2ff;
+    }
+
+    .title{
+      font-size:3rem;
+      margin-bottom:50px;
+    }
+
+    .gallery{
+      width:100%;
+      max-width:1100px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:white;
+      color:black;
+      padding:15px;
+      border-radius:15px;
+      transition:0.4s;
+    }
+
+    .card:hover{
+      transform:scale(1.05);
+    }
+
+    .card img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+      border-radius:10px;
+    }
+
+    .card p{
+      margin-top:10px;
+      font-weight:500;
+    }
+
+    .letter{
+      max-width:800px;
+      background:rgba(255,255,255,0.05);
+      padding:40px;
+      border-radius:20px;
+      line-height:2;
+    }
+
+    .final h1{
+      font-size:4rem;
+      margin-bottom:20px;
+    }
+
+    audio{
+      margin-top:20px;
+      width:300px;
+    }
+
+    @media(max-width:768px){
+
+      .hero h1,
+      .final h1{
+        font-size:2.5rem;
+      }
+
+      .title{
+        font-size:2rem;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+
+    <h1>HAPPY BIRTHDAY 🎉</h1>
+
+    <div class="typing">
+      <span id="typed"></span>
+    </div>
+
+    <a href="#memories" class="btn">
+      Enter Memory Lane
+    </a>
+
+  </section>
+
+  <section id="memories">
+
+    <h2 class="title">
+      Chaotic Memories 📸
+    </h2>
+
+    <div class="gallery">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop">
+        <p>proof we survived together</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1000&auto=format&fit=crop">
+        <p>professional nonsense creators</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1000&auto=format&fit=crop">
+        <p>too many memories. zero braincells.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section>
+
+    <h2 class="title">
+      Songs That Remind Me of You 🎵
+    </h2>
+
+    <audio controls autoplay loop>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    </audio>
+
+  </section>
+
+  <section>
+
+    <div class="letter">
+
+      <h2>A Little Message 💌</h2>
+
+      <p>
+
+        Thank you for every laugh,
+        every stupid conversation,
+        and every random memory.
+
+        Happy Birthday once again ❤️
+
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="final">
+
+    <h1>
+      Thanks For Existing ✨
+    </h1>
+
+    <button class="btn" onclick="celebrate()">
+      Celebrate 🎊
+    </button>
+
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+
+    var typed = new Typed('#typed', {
+
+      strings:[
+        'Initializing Best Friend.exe...',
+        '999+ memories detected...',
+        'Certified chaos partner found...'
+      ],
+
+      typeSpeed:50,
+      backSpeed:25,
+      loop:true
+
+    });
+
+    function celebrate(){
+
+      confetti({
+        particleCount:200,
+        spread:100,
+        origin:{ y:0.6 }
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
