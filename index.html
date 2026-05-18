@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Happy Birthday</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
   <style>
 
@@ -13,13 +14,18 @@
       margin:0;
       padding:0;
       box-sizing:border-box;
-      font-family:'Poppins',sans-serif;
+      scroll-behavior:smooth;
     }
 
     body{
-      background:#0d0d0d;
+      font-family:'Poppins',sans-serif;
+      background:#0a0a0f;
       color:white;
       overflow-x:hidden;
+      background-image:
+      radial-gradient(circle at 20% 20%, rgba(0,255,255,0.15), transparent 25%),
+      radial-gradient(circle at 80% 30%, rgba(255,0,255,0.15), transparent 25%),
+      radial-gradient(circle at 50% 80%, rgba(0,150,255,0.15), transparent 25%);
     }
 
     section{
@@ -28,107 +34,151 @@
       justify-content:center;
       align-items:center;
       flex-direction:column;
-      padding:50px 20px;
       text-align:center;
-    }
-
-    .hero{
-      background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);
+      padding:50px 20px;
+      position:relative;
     }
 
     .hero h1{
       font-size:4rem;
-      margin-bottom:20px;
-      text-shadow:0 0 20px #00c2ff;
+      font-family:'Press Start 2P',cursive;
+      color:#00e5ff;
+      text-shadow:0 0 20px #00e5ff;
+      margin-bottom:30px;
+      animation:glow 2s infinite alternate;
+    }
+
+    @keyframes glow{
+      from{
+        text-shadow:0 0 10px #00e5ff;
+      }
+      to{
+        text-shadow:0 0 30px #ff00ff;
+      }
     }
 
     .typing{
-      color:#00c2ff;
+      color:#ff9dfd;
       margin-bottom:30px;
       font-size:1.2rem;
     }
 
     .btn{
-      padding:14px 28px;
+      padding:15px 35px;
       border:none;
-      border-radius:40px;
-      background:#00c2ff;
-      color:black;
-      font-weight:600;
-      text-decoration:none;
+      border-radius:50px;
+      background:linear-gradient(45deg,#00e5ff,#ff00ff);
+      color:white;
+      font-weight:700;
       cursor:pointer;
       transition:0.3s;
+      box-shadow:0 0 20px rgba(255,255,255,0.2);
+      text-decoration:none;
     }
 
     .btn:hover{
-      transform:scale(1.05);
-      box-shadow:0 0 20px #00c2ff;
+      transform:scale(1.08);
+      box-shadow:0 0 30px #00e5ff;
     }
 
     .title{
       font-size:3rem;
       margin-bottom:50px;
+      color:#00e5ff;
+      text-shadow:0 0 15px #00e5ff;
     }
 
     .gallery{
       width:100%;
-      max-width:1100px;
+      max-width:1200px;
+
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
       gap:30px;
     }
 
     .card{
-      background:white;
-      color:black;
-      padding:15px;
-      border-radius:15px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter:blur(10px);
+      border-radius:25px;
+      overflow:hidden;
       transition:0.4s;
+      box-shadow:0 0 20px rgba(0,255,255,0.1);
     }
 
     .card:hover{
-      transform:scale(1.05);
+      transform:translateY(-10px) scale(1.03);
+      box-shadow:0 0 25px rgba(255,0,255,0.5);
     }
 
     .card img{
       width:100%;
-      height:250px;
+      height:300px;
       object-fit:cover;
-      border-radius:10px;
     }
 
     .card p{
-      margin-top:10px;
-      font-weight:500;
+      padding:20px;
+      font-size:1rem;
+      color:#fff;
     }
 
     .letter{
-      max-width:800px;
-      background:rgba(255,255,255,0.05);
-      padding:40px;
-      border-radius:20px;
+      max-width:850px;
+      background:rgba(255,255,255,0.07);
+      padding:50px;
+      border-radius:30px;
+      backdrop-filter:blur(15px);
+      border:1px solid rgba(255,255,255,0.1);
       line-height:2;
+      box-shadow:0 0 30px rgba(0,255,255,0.1);
+    }
+
+    .letter h2{
+      margin-bottom:20px;
+      color:#ff9dfd;
+      font-size:2rem;
     }
 
     .final h1{
       font-size:4rem;
-      margin-bottom:20px;
+      color:#00e5ff;
+      margin-bottom:30px;
+      text-shadow:0 0 20px #00e5ff;
     }
 
-    audio{
-      margin-top:20px;
-      width:300px;
+    .floating{
+      position:absolute;
+      width:10px;
+      height:10px;
+      background:#00e5ff;
+      border-radius:50%;
+      animation:float 8s linear infinite;
+      opacity:0.5;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(100vh) scale(0);
+      }
+      100%{
+        transform:translateY(-100vh) scale(1);
+      }
     }
 
     @media(max-width:768px){
 
-      .hero h1,
-      .final h1{
-        font-size:2.5rem;
+      .hero h1{
+        font-size:2rem;
       }
 
       .title{
         font-size:2rem;
+      }
+
+      .final h1{
+        font-size:2.5rem;
       }
 
     }
@@ -140,14 +190,14 @@
 
   <section class="hero">
 
-    <h1>HAPPY BIRTHDAY 🎉</h1>
+    <h1>LEVEL UP 🎮</h1>
 
     <div class="typing">
       <span id="typed"></span>
     </div>
 
     <a href="#memories" class="btn">
-      Enter Memory Lane
+      Start Mission ✨
     </a>
 
   </section>
@@ -155,24 +205,24 @@
   <section id="memories">
 
     <h2 class="title">
-      Chaotic Memories 📸
+      CORE MEMORIES 📸
     </h2>
 
     <div class="gallery">
 
       <div class="card">
         <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop">
-        <p>proof we survived together</p>
+        <p>proof we survived together 💀</p>
       </div>
 
       <div class="card">
         <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1000&auto=format&fit=crop">
-        <p>professional nonsense creators</p>
+        <p>elite chaos duo ✨</p>
       </div>
 
       <div class="card">
         <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1000&auto=format&fit=crop">
-        <p>too many memories. zero braincells.</p>
+        <p>too many memories. zero braincells 🎀</p>
       </div>
 
     </div>
@@ -181,29 +231,23 @@
 
   <section>
 
-    <h2 class="title">
-      Songs That Remind Me of You 🎵
-    </h2>
-
-    <audio controls autoplay loop>
-      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-    </audio>
-
-  </section>
-
-  <section>
-
     <div class="letter">
 
-      <h2>A Little Message 💌</h2>
+      <h2>Message For You 💌</h2>
 
       <p>
 
-        Thank you for every laugh,
-        every stupid conversation,
-        and every random memory.
+        Happy Birthday to the person who somehow became one of my favorite humans ever.<br><br>
 
-        Happy Birthday once again ❤️
+        Thank you for every laugh,
+        every dumb conversation,
+        every random memory,
+        and every moment that made life less boring.<br><br>
+
+        You deserve all the happiness,
+        success,
+        peace,
+        and legendary gamer wins ✨🎮
 
       </p>
 
@@ -213,9 +257,7 @@
 
   <section class="final">
 
-    <h1>
-      Thanks For Existing ✨
-    </h1>
+    <h1>YOU UNLOCKED<br>ANOTHER YEAR ✨</h1>
 
     <button class="btn" onclick="celebrate()">
       Celebrate 🎊
@@ -232,13 +274,14 @@
     var typed = new Typed('#typed', {
 
       strings:[
-        'Initializing Best Friend.exe...',
-        '999+ memories detected...',
-        'Certified chaos partner found...'
+        'Loading birthday surprises...',
+        'Best friend detected...',
+        'Legendary human unlocked...',
+        '999+ memories loaded...'
       ],
 
       typeSpeed:50,
-      backSpeed:25,
+      backSpeed:30,
       loop:true
 
     });
@@ -246,10 +289,27 @@
     function celebrate(){
 
       confetti({
-        particleCount:200,
-        spread:100,
+        particleCount:250,
+        spread:120,
         origin:{ y:0.6 }
       });
+
+    }
+
+    for(let i=0;i<30;i++){
+
+      let star=document.createElement('div');
+
+      star.classList.add('floating');
+
+      star.style.left=Math.random()*100+'vw';
+
+      star.style.animationDuration=
+      (Math.random()*5+5)+'s';
+
+      star.style.opacity=Math.random();
+
+      document.body.appendChild(star);
 
     }
 
